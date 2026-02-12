@@ -2,6 +2,13 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
+react {
+    autolinkLibrariesWithApp()
+}
+
+def enableProguardInReleaseBuilds = false
+def jscFlavor = 'org.webkit:android-jsc:+'
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -29,7 +36,7 @@ android {
         }
         release {
             signingConfig signingConfigs.debug
-            minifyEnabled false
+            minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
@@ -37,16 +44,10 @@ android {
 
 dependencies {
     implementation("com.facebook.react:react-android")
-    implementation("org.webkit:android-jsc:+")
     
-    // SQLite
-    implementation project(':react-native-sqlite-storage')
-    
-    // AsyncStorage
-    implementation project(':@react-native-async-storage_async-storage')
-    
-    // Navigation
-    implementation project(':react-native-screens')
-    implementation project(':react-native-safe-area-context')
-    implementation project(':react-native-gesture-handler')
+    if (hermesEnabled.toBoolean()) {
+        implementation("com.facebook.react:hermes-android")
+    } else {
+        implementation jscFlavor
+    }
 }
