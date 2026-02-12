@@ -1,12 +1,24 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.namespace == 'com.android') {
+                useModule('com.android.tools.build:gradle:8.1.1')
+            }
+            if (requested.id.id == 'com.facebook.react') {
+                useModule('com.facebook.react:react-native-gradle-plugin:0.73.6')
+            }
+        }
+    }
+}
+
 rootProject.name = 'NabuMessenger'
 
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
 applyNativeModulesSettingsGradle(settings)
 
 include ':app'
-
-include ':react-native-sqlite-storage'
-project(':react-native-sqlite-storage').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sqlite-storage/platforms/android')
-
-include ':@react-native-async-storage_async-storage'
-project(':@react-native-async-storage_async-storage').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-async-storage/async-storage/android')
