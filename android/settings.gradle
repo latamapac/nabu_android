@@ -1,19 +1,10 @@
 pluginManagement {
     repositories {
-        mavenCentral()
-        google()
         gradlePluginPortal()
+        google()
+        mavenCentral()
     }
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.namespace == 'com.android') {
-                useModule('com.android.tools.build:gradle:8.1.1')
-            }
-            if (requested.id.id == 'com.facebook.react') {
-                useModule('com.facebook.react:react-native-gradle-plugin:0.73.6')
-            }
-        }
-    }
+    includeBuild("../node_modules/@react-native/gradle-plugin")
 }
 
 rootProject.name = 'NabuMessenger'
@@ -22,3 +13,4 @@ apply from: file("../node_modules/@react-native-community/cli-platform-android/n
 applyNativeModulesSettingsGradle(settings)
 
 include ':app'
+includeBuild("../node_modules/@react-native/gradle-plugin")
