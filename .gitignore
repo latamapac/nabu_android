@@ -30,7 +30,6 @@ local.properties
 .cxx/
 *.keystore
 !debug.keystore
-.android-sdk/
 
 # node.js
 node_modules/
@@ -40,16 +39,7 @@ yarn-error.log
 # Bundle artifact
 *.jsbundle
 
-# Expo
-.expo/
-web-build/
-dist/
-
 # Temporary files
 *.swp
 *.swo
 *~
-
-# Environment variables
-.env
-.env.local

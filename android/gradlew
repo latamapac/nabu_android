@@ -1,17 +1,8 @@
 #!/bin/sh
 
-# Gradle start up script for POSIX
-case "$( uname )" in
-  CYGWIN* ) cygwin=true ;;
-  Darwin* ) darwin=true ;;
-  MSYS* | MINGW* ) msys=true ;;
-  NONSTOP* ) nonstop=true ;;
-esac
-
 APP_HOME="$( cd "${APP_HOME:-./}" && pwd )" || exit
 APP_NAME="Gradle"
 APP_BASE_NAME="${0##*/}"
-
 CLASSPATH="$APP_HOME/gradle/wrapper/gradle-wrapper.jar"
 
 if [ -n "$JAVA_HOME" ]; then
@@ -22,11 +13,6 @@ if [ -n "$JAVA_HOME" ]; then
     fi
 else
     JAVACMD="java"
-fi
-
-if [ ! -f "$CLASSPATH" ]; then
-    echo "ERROR: gradle-wrapper.jar not found"
-    exit 1
 fi
 
 exec "$JAVACMD" $JAVA_OPTS $GRADLE_OPTS \

@@ -15,7 +15,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -27,14 +26,12 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install dependencies
-        run: npm ci
-
-      - name: Make gradlew executable
-        run: chmod +x android/gradlew
+        run: npm install
 
       - name: Build APK
         run: |
           cd android
+          chmod +x gradlew
           ./gradlew assembleRelease
 
       - name: Upload APK
@@ -42,12 +39,3 @@ jobs:
         with:
           name: Nabu-v0.1-APK
           path: android/app/build/outputs/apk/release/app-release.apk
-          retention-days: 30
-
-      - name: Upload to Release
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v1
-        with:
-          files: android/app/build/outputs/apk/release/app-release.apk
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
