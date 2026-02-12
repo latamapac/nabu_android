@@ -10,10 +10,10 @@ import {
 function App(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="light-content" backgroundColor="#0a0a0a" />
       <View style={styles.center}>
         <Text style={styles.title}>Nabu Messenger</Text>
-        <Text style={styles.subtitle}>v0.1.0</Text>
+        <Text style={styles.version}>v0.1.0</Text>
       </View>
     </SafeAreaView>
   );
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#00D084',
   },
-  subtitle: {
+  version: {
     fontSize: 16,
     color: '#888',
     marginTop: 8,

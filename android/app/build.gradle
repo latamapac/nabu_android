@@ -2,6 +2,7 @@ apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 
 react {
+    autolinkLibrariesWithApp()
 }
 
 def enableProguardInReleaseBuilds = false
@@ -43,5 +44,10 @@ android {
 
 dependencies {
     implementation("com.facebook.react:react-android")
-    implementation jscFlavor
+
+    if (hermesEnabled.toBoolean()) {
+        implementation("com.facebook.react:hermes-android")
+    } else {
+        implementation jscFlavor
+    }
 }

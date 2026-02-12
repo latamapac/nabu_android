@@ -39,6 +39,9 @@ yarn-error.log
 # Bundle artifact
 *.jsbundle
 
+# CocoaPods
+/ios/Pods/
+
 # Temporary files
 *.swp
 *.swo
